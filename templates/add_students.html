@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Add Student</h2>
+<form action="{{ url_for('add_students') }}" method="post">
+	<dl>
+		<dt>First Name:</dt>
+		<dd><input type="text" name="first_name"></dd>
+		<dt>Middle Initial:</dt>
+		<dd><input type="text" name="middle_initial"></dd>
+		<dt>Last Name:</dt>
+		<dd><input type="text" name="last_name"></dd>
+		<dt>Graduation Year:</dt>
+		<dd><input type="date" name="grad_year"></dd>
+		<dt>GPA:</dt>
+		<dd><input type="number" step="0.01" name="gpa"></dd>
+		<dd><input type="submit" value="Add"></dd>
+	</dl>	
+</form>
+{% endblock %}

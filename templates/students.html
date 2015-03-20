@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 
 {% block content %}
 <table>
@@ -19,4 +19,5 @@
 	</tr>
 	{% endfor %}
 </table>
+<p><a href="{{ url_for('add_students') }}">Add Student</a></p>
 {% endblock %}
