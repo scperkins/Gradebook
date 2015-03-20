@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Middle Init.</th>
+		<th>Last Name</th>
+		<th>Graduation Year</th>
+		<th>GPA</th>
+	</tr>
+	{% for student in students %}
+	<tr>
+		<td>{{ student.first_name }}</td>
+		<td>{{ student.middle_initial }}</td>
+		<td>{{ student.last_name }}</td>
+		<td>{{ student.grad_year }}</td>
+		<td>{{ student.gpa }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
