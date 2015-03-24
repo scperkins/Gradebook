@@ -9,9 +9,9 @@ class BaseModel(Model):
         database = database
 
 class Student(BaseModel):
-    first_name = CharField()
+    first_name = CharField(null=False)
     middle_initial = CharField()
-    last_name = CharField()
+    last_name = CharField(null=False)
     grad_year = DateField()
     gpa = FloatField()
 
@@ -21,8 +21,8 @@ class Course(BaseModel):
     credits = FloatField()
 
 class Professor(BaseModel):
-    first_name = CharField()
-    last_name = CharField()
+    first_name = CharField(null=False)
+    last_name = CharField(null=False)
 
 class ProfessorCourse(BaseModel):
     professor = ForeignKeyField(Professor)

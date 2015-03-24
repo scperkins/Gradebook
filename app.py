@@ -1,4 +1,4 @@
-from flask import Flask, g, request, render_template, flash, redirect, url_for
+from flask import Flask, g, request, render_template, flash, redirect, url_for, abort
 from models import *
 
 SECRET_KEY = 'development key'
@@ -9,6 +9,12 @@ app.config.from_object(__name__)
 def create_tables():
     database.connect()
     database.create_tables([Student, Course, Professor, StudentCourse, ProfessorCourse])
+
+def get_object_or_404(model, *expressions):
+    try:
+        return model.get(*expressions)
+    except model.DoesNotExist:
+        abort(404)
 
 @app.before_request
 def before_request():
@@ -47,6 +53,11 @@ def add_students():
 def get_students():
     students= Student.select()
     return render_template('students.html',students=students)
+
+@app.route('/students/<student_id>')
+def student_detail(student_id):
+    student = get_object_or_404(Student, Student.id == student_id)
+    return render_template('student.html', student=student) 
 
 if __name__ == "__main__":
     app.run(debug=True)
