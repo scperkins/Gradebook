@@ -15,6 +15,11 @@
 			<td>{{ student.last_name }}</td>
 			<td>{{ student.grad_year }}</td>
 			<td>{{ student.gpa }}</td>
+			<td>
+				<form action="{{ url_for('delete_student', student_id=student.id) }}" method="post">
+					<input type="submit" value="Delete"/>
+				</form>
+			</td>
 		</tr>
 	</table>
 {% endblock %}

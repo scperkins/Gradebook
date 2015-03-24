@@ -30,7 +30,7 @@ def after_request(response):
 def index():
     return render_template('index.html')
 
-@app.route('/students/add', methods=['GET', 'POST'])
+@app.route('/students/add', methods=['GET','POST'])
 def add_students():
     if request.method == 'POST':
         try:
@@ -57,7 +57,14 @@ def get_students():
 @app.route('/students/<student_id>')
 def student_detail(student_id):
     student = get_object_or_404(Student, Student.id == student_id)
-    return render_template('student.html', student=student) 
+    return render_template('student.html', student=student)
+
+@app.route('/students/<student_id>', methods=['POST'])
+def delete_student(student_id):
+    student = Student.get(Student.id == student_id)
+    student.delete_instance()
+    flash("Student deleted")
+    return redirect(url_for('get_students'))
 
 if __name__ == "__main__":
     app.run(debug=True)
