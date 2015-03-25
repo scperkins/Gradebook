@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<p>Hooray, it worked!</p>
+<h3><a href="{{ url_for('get_students') }}">Students</a></h3>
+<h3><a href="{{ url_for('get_profs') }}">Professors</a></h3>
 {% endblock %}

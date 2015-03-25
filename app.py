@@ -66,5 +66,35 @@ def delete_student(student_id):
     flash("Student deleted")
     return redirect(url_for('get_students'))
 
+@app.route('/professors/')
+def get_profs():
+    profs = Professor.select()
+    return render_template('professors.html', profs=profs)
+
+@app.route('/professors/<professor_id>')
+def professor_detail(professor_id):
+    professor = get_object_or_404(Professor, Professor.id == professor_id)
+    return render_template('professor.html', prof=professor)
+
+@app.route('/professors/add', methods=['GET', 'POST'])
+def add_prof():
+    if request.method == 'POST':
+        try:
+            with database.transaction():
+                prof = Professor.create(
+                        first_name=request.form['first_name'],
+                        last_name=request.form['last_name']
+                )
+            flash('Professor successfully added')
+            return redirect(url_for('get_profs'))
+        
+        except IntegrityError:
+            flash('Something went wrong...')
+    return render_template('add_professor.html')
+
+@app.route('/courses/')
+def get_courses():
+    courses = Courses.select()
+
 if __name__ == "__main__":
     app.run(debug=True)
