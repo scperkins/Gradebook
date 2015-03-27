@@ -95,6 +95,7 @@ def add_prof():
 @app.route('/courses/')
 def get_courses():
     courses = Courses.select()
+    return render_template('courses.html', courses=courses)
 
 if __name__ == "__main__":
     app.run(debug=True)
