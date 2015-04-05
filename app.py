@@ -94,8 +94,24 @@ def add_prof():
 
 @app.route('/courses/')
 def get_courses():
-    courses = Courses.select()
+    courses = Course.select()
     return render_template('courses.html', courses=courses)
+
+@app.route('/courses/add', methods=['GET', 'POST'])
+def add_course():
+    if request.method == 'POST':
+        try:
+            with database.transaction():
+                course = Course.create(
+                        name=request.form['name'],
+                        course_id=request.form['course_id'],
+                        credits=request.form['credits']
+                )
+                flash('Course successfully added')
+                return redirect(url_for('get_courses'))
+        except IntegrityError:
+            flash('Something went wrong...')
+    return render_template('add_course.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

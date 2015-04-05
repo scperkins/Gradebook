@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Add Course</h2>
+<form action="{{ url_for('add_course') }}" method="post">
+	<dl>
+		<dt>Class name:</dt>
+		<dd><input type="text" name="name" required="true"></dd>
+		<dt>Course ID:</dt>
+		<dd><input type="text" name="course_id" required="true"></dd>
+		<dt>Credits:</dt>
+		<dd><input type="number" step="1" required="true"></dd>
+	</dl>
+</form>
+{% endblock %}
