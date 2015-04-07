@@ -1,0 +1,21 @@
+{
+  "name": "flakes",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "snapjs": "~1.9.3",
+    "responsive-elements": "~1.0.0",
+    "gridforms": "~1.0.2"
+  },
+  "homepage": "https://github.com/kumailht/flakes",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "4b54942e23d42631f2dd25e0c87daaf2e0f2de1b"
+  },
+  "_source": "git://github.com/kumailht/flakes.git",
+  "_target": "~1.0.0",
+  "_originalSource": "flakes",
+  "_direct": true
+}

@@ -1,17 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<table>
-	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-	</tr>
+<table class="flakes-table">
+	<colgroup>
+		<col span="1" style="width:30%" />
+	</colgroup>
+	<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+		</tr>
+	</thead>
+	<tbody>
 	{% for student in students %}
 	<tr>
 		<td><a href="{{ url_for('student_detail', student_id=student.id) }}">{{ student.first_name }}</a></td>
 		<td>{{ student.last_name }}</td>
 	</tr>
 	{% endfor %}
+	</tbody>
 </table>
-<p><a href="{{ url_for('add_students') }}">Add Student</a></p>
+<p><a class="button-green" href="{{ url_for('add_students') }}">Add Student</a></p>
 {% endblock %}

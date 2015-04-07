@@ -1,18 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Course ID</th>
-		<th>Credits</th>
-	</tr>
-	<tr>
-		{% for course in courses %}
-		<td>{{ course.name }}</td>
-		<td>{{ course_id }}</td>
-		<td>{{ course.credits }}</td>
-		{% endfor %}
-	</tr>
+<table class="flakes-table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Course ID</th>
+			<th>Credits</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			{% for course in courses %}
+			<td>{{ course.name }}</td>
+			<td>{{ course_id }}</td>
+			<td>{{ course.credits }}</td>
+			{% endfor %}
+		</tr>
+	</tbody>
 </table>
+<p><a class="button-green" href="{{ url_for('add_course') }}">Add Course</a></p>
 {% endblock %}

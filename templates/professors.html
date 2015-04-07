@@ -1,17 +1,21 @@
 {% extends "layout.html"%}
 
 {% block content %}
-<table>
-	<tr>
-		<th>Last Name</th>
-		<th>First Name</th>
-	</tr>
-	{% for prof in profs %}
-	<tr>
-		<td><a href="{{ url_for('professor_detail', professor_id=prof.id) }}">{{prof.last_name }}</a></td>
-		<td>{{ prof.first_name }}</td>
-	</tr>
-	{% endfor %}
+<table class="flakes-table">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+		</tr>
+	</thead>
+		<tbody>
+		{% for prof in profs %}
+		<tr>
+			<td><a href="{{ url_for('professor_detail', professor_id=prof.id) }}">{{prof.last_name }}</a></td>
+			<td>{{ prof.first_name }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
 </table>
-<p><a href="{{ url_for('add_prof') }}">Add Professor</a></p>
+<p><a class="button-green" href="{{ url_for('add_prof') }}">Add Professor</a></p>
 {% endblock %}
