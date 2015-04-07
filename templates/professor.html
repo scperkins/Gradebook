@@ -2,15 +2,28 @@
 
 
 {% block content %}
-<table>
-	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Courses</th>
-	</tr>
-	<tr>
-		<td>{{ prof.first_name }}</td>
-		<td>{{ prof.last_name }}</td>
-	</tr>
+<div class="grid-4 gutter-20">
+	<div class="span-3">
+		<fieldset class="flakes-information-box">
+			<legend>Professor Information</legend>
+			<div class="grid-3">
+				<dl class="span-1">
+					<dt>First Name</dt>
+					<dd>{{ prof.first_name }}</dd>
+				</dl>
+				<dl>
+					<dt>Last Name</dt>
+					<dd>{{ prof.last_name }}</dd>
+				</dl>
+			</div>
+		</fieldset>
+	</div>
+</div>
+<table class="flakes-table">
+	<thead>
+		<tr>
+			<thead>Courses</thead>
+		</tr>
+	</thead>
 </table>
 {% endblock %}

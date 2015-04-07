@@ -1,14 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Add Professor</h2>
-<form action="{{ url_for('add_prof') }}" method="post">
-	<dl>
-		<dt>First Name</dt>
-		<dd><input type="text" name="first_name" required></dd>
-		<dt>Last Name</dt>
-		<dd><input type="text" name="last_name" required></dd>
-		<dd><input class="button-blue" type="submit" value="Add"></dd>
-	</dl>
-</form>
+<fieldset>
+<legend>Professor Information</legend>
+	<form action="{{ url_for('add_prof') }}" method="post">
+		<ul>
+			<label>First Name</label>
+			<li><input type="text" name="first_name" required></li>
+			<label>Last Name</label>
+			<li><input type="text" name="last_name" required></li>
+			<li><input class="button-blue" type="submit" value="Add"></li>
+		</ul>
+	</form>
+</fieldset>
 {% endblock %}
