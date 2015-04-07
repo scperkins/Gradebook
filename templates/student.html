@@ -4,38 +4,41 @@
 	<div class="grid-4 gutter-20">
 		<div class="span-3">
 			<fieldset class="flakes-information-box">
-				<div class="grid-4">
-					<dl class="span-2">
+			<legend>Student Details</legend>
+				<div class="grid-3">
+					<dl class="span-1">
 						<dt>First Name</dt>
 						<dd>{{ student.first_name }}</dd>
 					</dl>
-					<dl class="span-2">
+					<dl class="span-1">
+						<dt>Middle Initial</dt>
+						<dd>{{ student.middle_initial }}</dd>
+					</dl>
+					<dl class="span-1">
 						<dt>Last Name</dt>
 						<dd>{{ student.last_name }}</dd>
 					</dl>
 				</div>
+				<div class="grid-3">
+					<dl class="span-1">
+						<dt>Graduation Year</dt>
+						<dd>{{ student.grad_year }}</dd>
+					</dl>
+					<dl class="span-1">
+						<dt>GPA</dt>
+						<dd>{{ student.gpa}}</dd>
+					</dl>					
+				</div>
 			</fieldset>
 		</div>
-	</div>
-	<table>
-		<tr>
-			<th>First Name</th>
-			<th>Middle Init.</th>
-			<th>Last Name</th>
-			<th>Graduation Year</th>
-			<th>GPA</th>
-		</tr>
-		<tr>
-			<td>{{ student.first_name }}</td>
-			<td>{{ student.middle_initial }}</td>
-			<td>{{ student.last_name }}</td>
-			<td>{{ student.grad_year }}</td>
-			<td>{{ student.gpa }}</td>
-			<td>
+		<div class="span-1">
+			<fieldset class="flakes-information-box">
+				<legend>Actions</legend>
 				<form action="{{ url_for('delete_student', student_id=student.id) }}" method="post">
-					<input type="submit" value="Delete"/>
+					<input class="button-magenta smaller" type="submit" value="Delete"/>
 				</form>
-			</td>
-		</tr>
-	</table>
+			</fieldset>
+			
+		</div>
+	</div>
 {% endblock %}
