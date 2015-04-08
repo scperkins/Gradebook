@@ -17,7 +17,7 @@ class Student(BaseModel):
 
 class Course(BaseModel):
     name = CharField()
-    course_id = IntegerField()
+    course_id = CharField()
     credits = FloatField()
 
 class Professor(BaseModel):

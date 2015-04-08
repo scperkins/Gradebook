@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Add Course</h2>
+<fieldset>
 <form action="{{ url_for('add_course') }}" method="post">
-	<dl>
-		<dt>Class name:</dt>
-		<dd><input type="text" name="name" required="true"></dd>
-		<dt>Course ID:</dt>
-		<dd><input type="text" name="course_id" required="true"></dd>
-		<dt>Credits:</dt>
-		<dd><input type="number" step="1" required="true"></dd>
-		<dd><input type="submit" value="Add"></dd>
-	</dl>
+<legend>Add Course</legend>
+	<ul>
+		<label>Course name:</label>
+		<li><input type="text" name="name" required="true"></li>
+		<label>Course ID:</label>
+		<li><input type="text" name="course_id" required="true"></li>
+		<label>Credits:</label>
+		<li><input type="number" step="1" required="true"></li>
+		<li><input class="button-blue" type="submit" value="Add"></li>
+	</ul>
 </form>
+</fieldset>
 {% endblock %}
