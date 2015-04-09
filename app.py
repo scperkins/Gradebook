@@ -107,8 +107,8 @@ def add_course():
                         course_id=request.form['course_id'],
                         credits=request.form['credits']
                 )
-                flash('Course successfully added')
-                return redirect(url_for('get_courses'))
+            flash('Course successfully added')
+            return redirect(url_for('get_courses'))
         except IntegrityError:
             flash('Something went wrong...')
     return render_template('add_course.html')
