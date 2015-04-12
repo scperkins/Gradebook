@@ -12,6 +12,7 @@ class Student(BaseModel):
     first_name = CharField(null=False)
     middle_initial = CharField()
     last_name = CharField(null=False)
+    gender = CharField(max_length=1)
     grad_year = DateField()
     gpa = FloatField()
 
@@ -29,12 +30,18 @@ class Assignment(BaseModel):
 class Professor(BaseModel):
     first_name = CharField(null=False)
     last_name = CharField(null=False)
-
+    gender = CharField(max_length=1)
 class ProfessorCourse(BaseModel):
+    '''
+    Specifies relationship between Professor and Course
+    '''
     professor = ForeignKeyField(Professor)
     course = ForeignKeyField(Course)
 
 class StudentCourse(BaseModel):
+    '''
+    Specifies relationship between Student and Course
+    '''
     student = ForeignKeyField(Student)
     course = ForeignKeyField(Course)
 

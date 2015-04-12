@@ -33,12 +33,14 @@ def index():
 @app.route('/students/add', methods=['GET','POST'])
 def add_students():
     if request.method == 'POST':
+        import pdb;pdb.set_trace()
         try:
             with database.transaction():
                 student = Student.create(
                         first_name=request.form['first_name'],
                         middle_initial=request.form['middle_initial'],
                         last_name=request.form['last_name'],
+                        gender=request.form['gender'],
                         grad_year=request.form['grad_year'],
                         gpa=request.form['gpa'])
             flash('Student sucessfully added!')
@@ -100,7 +102,6 @@ def get_courses():
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
     if request.method == 'POST':
-        #import pdb;pdb.set_trace()
         try:
             with database.transaction():
                 course = Course.create(
