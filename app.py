@@ -100,11 +100,12 @@ def get_courses():
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
     if request.method == 'POST':
+        #import pdb;pdb.set_trace()
         try:
             with database.transaction():
                 course = Course.create(
                         name=request.form['name'],
-                        course_id=request.form['course_id'],
+                        short_course_id=request.form['short_course_id'],
                         credits=request.form['credits']
                 )
             flash('Course successfully added')
@@ -112,6 +113,11 @@ def add_course():
         except IntegrityError:
             flash('Something went wrong...')
     return render_template('add_course.html')
+
+@app.route('/courses/<course_id>')
+def course_detail(course_id):
+    course = get_object_or_404(Course, Course.id == course_id)
+    return render_template('course.html', course = course)
 
 if __name__ == "__main__":
     app.run(debug=True)

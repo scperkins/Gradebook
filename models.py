@@ -17,8 +17,14 @@ class Student(BaseModel):
 
 class Course(BaseModel):
     name = CharField()
-    course_id = CharField()
+    short_course_id = CharField()
     credits = FloatField()
+
+class Assignment(BaseModel):
+    name = CharField(null=False)
+    description = CharField()
+    due_date = DateField()
+    max_points = FloatField()
 
 class Professor(BaseModel):
     first_name = CharField(null=False)

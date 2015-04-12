@@ -12,8 +12,8 @@
 	<tbody>
 		<tr>
 			{% for course in courses %}
-			<td>{{ course.name }}</td>
-			<td>{{ course_id }}</td>
+			<td><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.name }}</a></td>
+			<td>{{ course.short_course_id }}</td>
 			<td>{{ course.credits }}</td>
 			{% endfor %}
 		</tr>
