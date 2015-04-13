@@ -8,7 +8,7 @@ app.config.from_object(__name__)
 
 def create_tables():
     database.connect()
-    database.create_tables([Student, Course, Professor, StudentCourse, ProfessorCourse])
+    database.create_tables([Student, Course, Professor, StudentCourse, ProfessorCourse], safe=True)
 
 def get_object_or_404(model, *expressions):
     try:
@@ -121,4 +121,5 @@ def course_detail(course_id):
     return render_template('course.html', course = course)
 
 if __name__ == "__main__":
+    create_tables()
     app.run(debug=True)

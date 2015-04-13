@@ -3,10 +3,12 @@
 {% block content %}
 <table class="flakes-table">
 	<colgroup>
-		<col span="1" style="width:30%" />
+		<col span="1" style="width:20px">
+		<col span="1" style="width:40%">
 	</colgroup>
 	<thead>
 		<tr>
+			<td><input type="checkbox"></td>
 			<th>First Name</th>
 			<th>Last Name</th>
 		</tr>
@@ -14,6 +16,7 @@
 	<tbody>
 	{% for student in students %}
 	<tr>
+		<td><input type="checkbox"></td>
 		<td><a href="{{ url_for('student_detail', student_id=student.id) }}">{{ student.first_name }}</a></td>
 		<td>{{ student.last_name }}</td>
 	</tr>
