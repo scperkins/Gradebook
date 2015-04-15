@@ -2,8 +2,11 @@
 
 {% block content %}
 <table class="flakes-table">
+	<col span="1" style="width:20px">
+	<col span="1" style="width:40%">
 	<thead>
 		<tr>
+			<td><input type="checkbox"></td>
 			<th>Name</th>
 			<th>Course ID</th>
 			<th>Credits</th>
@@ -12,6 +15,7 @@
 	<tbody>
 		<tr>
 			{% for course in courses %}
+			<td><input type="checkbox"></td>
 			<td><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.name }}</a></td>
 			<td>{{ course.short_course_id }}</td>
 			<td>{{ course.credits }}</td>

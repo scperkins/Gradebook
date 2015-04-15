@@ -3,14 +3,26 @@
 {% block content %}
 <fieldset>
 <legend>Professor Information</legend>
-	<form action="{{ url_for('add_prof') }}" method="post">
-		<ul>
-			<label>First Name</label>
-			<li><input type="text" name="first_name" required></li>
-			<label>Last Name</label>
-			<li><input type="text" name="last_name" required></li>
-			<li><input class="button-blue" type="submit" value="Add"></li>
-		</ul>
+	<form class="grid-form" action="{{ url_for('add_prof') }}" method="post">
+		<div data-row-span="3">
+			<div data-field-span="1">
+				<label>First Name</label>
+				<input type="text" name="first_name" required>
+			</div>
+			<div data-field-span="1">
+				<label>Last Name</label>
+				<input type="text" name="last_name" required>
+			</div>
+			<div data-field-span="1">
+				<label>Gender</label>
+				<select id="gender" name="gender">
+					<option value="M">Male</option>
+					<option value="F">Female</option>
+				</select>				
+			</div>
+		</div>
+		<br>
+		<input class="button-blue" type="submit" value="Add">
 	</form>
 </fieldset>
 {% endblock %}

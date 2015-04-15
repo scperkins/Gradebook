@@ -8,7 +8,7 @@ app.config.from_object(__name__)
 
 def create_tables():
     database.connect()
-    database.create_tables([Student, Course, Professor, StudentCourse, ProfessorCourse], safe=True)
+    database.create_tables([Student, Course, Professor, StudentCourse], safe=True)
 
 def get_object_or_404(model, *expressions):
     try:
@@ -85,7 +85,8 @@ def add_prof():
             with database.transaction():
                 prof = Professor.create(
                         first_name=request.form['first_name'],
-                        last_name=request.form['last_name']
+                        last_name=request.form['last_name'],
+                        gender=request.form['gender']
                 )
             flash('Professor successfully added')
             return redirect(url_for('get_profs'))
@@ -101,19 +102,21 @@ def get_courses():
 
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
+    professors = Professor.select()
     if request.method == 'POST':
         try:
             with database.transaction():
                 course = Course.create(
                         name=request.form['name'],
                         short_course_id=request.form['short_course_id'],
-                        credits=request.form['credits']
+                        credits=request.form['credits'],
+                        professor=request.form['professor']
                 )
             flash('Course successfully added')
             return redirect(url_for('get_courses'))
         except IntegrityError:
             flash('Something went wrong...')
-    return render_template('add_course.html')
+    return render_template('add_course.html', professors=professors)
 
 @app.route('/courses/<course_id>')
 def course_detail(course_id):

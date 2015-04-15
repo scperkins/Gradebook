@@ -3,16 +3,33 @@
 {% block content %}
 <fieldset>
 <legend>Add Course</legend>
-<form action="{{ url_for('add_course') }}" method="post">
-	<ul>
-		<label>Course name:</label>
-		<li><input type="text" name="name" required="true"></li>
-		<label>Course ID:</label>
-		<li><input type="text" name="short_course_id" placeholder="e.g, CS001" required="true"></li>
-		<label>Credits:</label>
-		<li><input type="number" name="credits" required="true"></li>
-		<li><input class="button-blue" type="submit" value="Add"></li>
-	</ul>
+<form class="grid-form" action="{{ url_for('add_course') }}" method="post">
+	<div data-row-span="3">
+		<div data-field-span="1">
+			<label>Course name:</label>
+			<input type="text" name="name" required="true">
+		</div>
+		<div data-field-span="1">
+			<label>Course ID:</label>
+			<input type="text" name="short_course_id" placeholder="e.g, CS001" required="true">
+		</div>
+		<div data-field-span="1">
+			<label>Credits:</label>
+			<input type="number" name="credits" required="true">
+		</div>
+	</div>
+	<div data-row-span="2">
+		<div data-field-span="1">
+			<label>Lecturer</label>
+			<select id="professor" name="professor">
+				{% for prof in professors %}
+				<option>{{ prof.last_name + ", " + prof.first_name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	<br>
+	<input class="button-blue" type="submit" value="Add">
 </form>
 </fieldset>
 {% endblock %}
