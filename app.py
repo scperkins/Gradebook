@@ -106,6 +106,7 @@ def add_course():
     if request.method == 'POST':
         try:
             with database.transaction():
+                import pdb;pdb.set_trace()
                 course = Course.create(
                         name=request.form['name'],
                         short_course_id=request.form['short_course_id'],

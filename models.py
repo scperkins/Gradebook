@@ -25,7 +25,7 @@ class Course(BaseModel):
     name = CharField()
     short_course_id = CharField()
     credits = FloatField()
-    professor = ForeignKeyField(Professor, related_name = 'courses')
+    professor = ForeignKeyField(Professor)
 
 class Assignment(BaseModel):
     name = CharField(null=False)

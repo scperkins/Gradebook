@@ -21,9 +21,9 @@
 	<div data-row-span="2">
 		<div data-field-span="1">
 			<label>Lecturer</label>
-			<select id="professor" name="professor">
+			<select id="prof.id" name="professor">
 				{% for prof in professors %}
-				<option>{{ prof.last_name + ", " + prof.first_name }}</option>
+				<option value="{{ prof.id }}">{{ prof.last_name + ", " + prof.first_name}}</option>
 				{% endfor %}
 			</select>
 		</div>

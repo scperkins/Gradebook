@@ -2,8 +2,10 @@
 
 {% block content %}
 <table class="flakes-table">
-	<col span="1" style="width:20px">
-	<col span="1" style="width:40%">
+	<colgroup>
+		<col span="1" style="width:20px">
+		<col span="1" style="width:40%">
+	</colgroup>
 	<thead>
 		<tr>
 			<td><input type="checkbox"></td>
@@ -13,14 +15,14 @@
 		</tr>
 	</thead>
 	<tbody>
+		{% for course in courses %}
 		<tr>
-			{% for course in courses %}
 			<td><input type="checkbox"></td>
 			<td><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.name }}</a></td>
 			<td>{{ course.short_course_id }}</td>
 			<td>{{ course.credits }}</td>
-			{% endfor %}
 		</tr>
+		{% endfor %}
 	</tbody>
 </table>
 <p><a class="button-green" href="{{ url_for('add_course') }}">Add Course</a></p>
