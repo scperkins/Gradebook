@@ -9,11 +9,19 @@
 						<dl class="span-1">
 							<dt>Name</dt>
 							<dd>{{course.name}}</dd>
+						</dl>
+						<dl class="span-1">
 							<dt>Course ID</dt>
 							<dd>{{ course.short_course_id }}</dd>
+						</dl>
+						<dl class="span-1">
 							<dt>Credits</dt>
 							<dd>{{ course.credits }}</dd>
-						</dl>					
+						</dl>
+						<dl>
+							<dt>Professor</dt>
+							<dd>{{ course.professor.first_name + " " + course.professor.last_name }}</dd>
+						</dl>				
 					</div>
 			</fieldset>
 		</div>
