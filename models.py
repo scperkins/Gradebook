@@ -32,6 +32,7 @@ class Assignment(BaseModel):
     description = CharField()
     due_date = DateField()
     max_points = FloatField()
+    course = ForeignKeyField(Course)
 
 class StudentCourse(BaseModel):
     '''

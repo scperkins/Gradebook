@@ -33,7 +33,6 @@ def index():
 @app.route('/students/add', methods=['GET','POST'])
 def add_students():
     if request.method == 'POST':
-        import pdb;pdb.set_trace()
         try:
             with database.transaction():
                 student = Student.create(
@@ -68,6 +67,21 @@ def delete_student(student_id):
     flash("Student deleted")
     return redirect(url_for('get_students'))
 
+@app.route('/students/edit/<student_id>', methods=['GET','POST'])
+def edit_student(student_id):
+    student = Student.get(Student.id == student_id)
+    import pdb;pdb.set_trace()
+    if request.method == 'GET':
+        return render_template('edit_student.html', student=student)
+    if request.method == 'POST':
+        student.first_name=request.form.get['first_name'],
+        middle_initial=request.form['middle_initial'],
+        last_name=request.form['last_name'],
+        gender=request.form['gender'],
+        grad_year=request.form['grad_year'],
+        gpa = request.form['gpa']
+        
+    return redirect(url_for('student_detail'))
 @app.route('/professors/')
 def get_profs():
     profs = Professor.select()
@@ -106,7 +120,6 @@ def add_course():
     if request.method == 'POST':
         try:
             with database.transaction():
-                import pdb;pdb.set_trace()
                 course = Course.create(
                         name=request.form['name'],
                         short_course_id=request.form['short_course_id'],
