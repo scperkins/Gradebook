@@ -70,7 +70,6 @@ def delete_student(student_id):
 @app.route('/students/edit/<student_id>', methods=['GET','POST'])
 def edit_student(student_id):
     student = Student.get(Student.id == student_id)
-    import pdb;pdb.set_trace()
     if request.method == 'GET':
         return render_template('edit_student.html', student=student)
     if request.method == 'POST':
@@ -90,7 +89,8 @@ def get_profs():
 @app.route('/professors/<professor_id>')
 def professor_detail(professor_id):
     professor = get_object_or_404(Professor, Professor.id == professor_id)
-    return render_template('professor.html', prof=professor)
+    courses_taught = Course.select().where(Course.professor == professor_id)
+    return render_template('professor.html', prof=professor, courses=courses_taught)
 
 @app.route('/professors/add', methods=['GET', 'POST'])
 def add_prof():

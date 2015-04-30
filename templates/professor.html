@@ -23,11 +23,15 @@
 <table class="flakes-table">
 	<thead>
 		<tr>
-			<thead>Courses</thead>
+			<th>Course Name</th>
 		</tr>
 	</thead>
 	<tbody>
-		
+	{% for course in courses %}
+		<tr>
+			<td>{{ course.name }}</td>
+		</tr>
+	{% endfor %}
 	</tbody>
 </table>
 {% endblock %}
