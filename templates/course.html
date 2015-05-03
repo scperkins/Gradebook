@@ -33,6 +33,33 @@
 				<p><a href="{{ url_for('add_assignment', course_id=course.id) }}">Add Assignment</a></p>
 			</fieldset>
 		</div>
-		<a href=""></a>
-	</div>
+
+	{% if assignments %}
+		<table class="flakes-table">
+		<colgroup>
+			<col span="1" style="width:20px">
+			<col span="1" style="width:40%">
+		</colgroup>
+		<thead>
+			<tr>
+				<td><input type="checkbox"></td>
+				<th>Assignment</th>
+				<th>Due Date</th>
+				<th>Max Points</th>
+				<th>Descritpion</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for assignment in assignments %}
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>{{ assignment.name }}</td>
+			<td>{{ assignment.due_date }}</td>
+			<td>{{ assignment.max_points }}</td>
+			<td>{{ assignment.description }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
 {% endblock %}
