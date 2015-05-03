@@ -135,7 +135,7 @@ def add_course():
 @app.route('/courses/<course_id>')
 def course_detail(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
-    assignments = Assignment.select()
+    assignments = Assignment.select().where(Assignment.course == course_id)
     return render_template('course.html', course=course, assignments=assignments)
 
 @app.route('/courses/<course_id>/add_assignment/', methods=['GET', 'POST'])
