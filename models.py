@@ -14,7 +14,7 @@ class Student(BaseModel):
     last_name = CharField(null=False)
     gender = CharField(max_length=1)
     grad_year = DateField()
-    gpa = FloatField()
+    gpa = DoubleField()
 
 class Professor(BaseModel):
     first_name = CharField(null=False)
@@ -24,14 +24,14 @@ class Professor(BaseModel):
 class Course(BaseModel):
     name = CharField()
     short_course_id = CharField()
-    credits = FloatField()
+    credits = DoubleField()
     professor = ForeignKeyField(Professor)
 
 class Assignment(BaseModel):
     name = CharField(null=False)
     description = CharField()
     due_date = DateField()
-    max_points = FloatField()
+    max_points = DoubleField()
     course = ForeignKeyField(Course)
 
 class StudentCourse(BaseModel):
@@ -41,8 +41,5 @@ class StudentCourse(BaseModel):
     student = ForeignKeyField(Student)
     course = ForeignKeyField(Course)
 
-class AssignmentCourse(BaseModel):
-    assignment = ForeignKeyField(Assignment)
-    course = ForeignKeyField(Course)
 
 

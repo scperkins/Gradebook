@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<fieldset>
+<legend>Add Assignment</legend>
+	<form class="grid-form" action="{{ url_for('add_assignment', course_id=course.id) }}" method="post">
+		<div data-row-span="3">
+			<div data-field-span="1">
+				<label>Assignment Name:</label>
+				<input type="text" name="name" required="true">
+			</div>
+			<div data-field-span="1">
+				<label>Due Date:</label>
+				<input type="date" name="due_date" required="true">
+			</div>
+			<div data-field-span="1">
+				<label>Max Points:</label>
+				<input type="number" name="max_points" required="true">
+			</div>
+		</div>
+		<div data-row-span="3">
+			<div data-field-span="3">
+				<label>Description:</label>
+				<input type="text" name="desc">
+			</div>
+		</div>
+		<br>
+		<input class="button-blue" type="submit" value="Add">
+</form>
+</fieldset>
+{% endblock %}
