@@ -34,6 +34,11 @@ class Assignment(BaseModel):
     max_points = DoubleField()
     course = ForeignKeyField(Course)
 
+class Grade(BaseModel):
+    score = DoubleField()
+    student = ForeignKeyField(Student)
+    assignment = ForeignKeyField(Assignment)
+
 class StudentCourse(BaseModel):
     '''
     Specifies relationship between Student and Course

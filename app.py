@@ -140,7 +140,6 @@ def course_detail(course_id):
 
 @app.route('/courses/<course_id>/add_assignment/', methods=['GET', 'POST'])
 def add_assignment(course_id):
-    #import pdb;pdb.set_trace()
     course = get_object_or_404(Course, Course.id == course_id)
     if request.method == 'POST':
         try:
