@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     :filename: forms.py
     :author: Sean Perkins <'github.com/scperkins'>

@@ -57,32 +57,28 @@ def get_students():
     students= Student.select()
     return render_template('students.html',students=students)
 
-@app.route('/students/<student_id>')
+@app.route('/students/<int:student_id>')
 def student_detail(student_id):
     student = get_object_or_404(Student, Student.id == student_id)
     return render_template('student.html', student=student)
 
-@app.route('/students/<student_id>', methods=['POST'])
+@app.route('/students/<int:student_id>/delete', methods=['POST'])
 def delete_student(student_id):
     student = Student.get(Student.id == student_id)
     student.delete_instance()
     flash("Student deleted")
     return redirect(url_for('get_students'))
 
-@app.route('/students/edit/<student_id>', methods=['GET','POST'])
+@app.route('/students/<int:student_id>/', methods=['GET','POST'])
 def edit_student(student_id):
     student = Student.get(Student.id == student_id)
-    if request.method == 'GET':
-        return render_template('edit_student.html', student=student)
-    if request.method == 'POST':
-        student.first_name=request.form.get['first_name'],
-        middle_initial=request.form['middle_initial'],
-        last_name=request.form['last_name'],
-        gender=request.form['gender'],
-        grad_year=request.form['grad_year'],
-        gpa = request.form['gpa']
-        
-    return redirect(url_for('student_detail'))
+    form = StudentForm(request.form, obj=student)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(student)
+        student.save()
+        flash("Edit successful")
+        return redirect(url_for('student_detail', student_id=student_id))
+    return render_template('edit_student.html', student=student, form=form)
 
 @app.route('/professors/')
 def get_profs():
@@ -141,7 +137,7 @@ def course_detail(course_id):
     assignments = Assignment.select().where(Assignment.course == course_id)
     return render_template('course.html', course=course, assignments=assignments)
 
-@app.route('/courses/<course_id>/add_assignment/', methods=['GET', 'POST'])
+@app.route('/courses/<course_id>/add_assignment', methods=['GET', 'POST'])
 def add_assignment(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
     if request.method == 'POST':
