@@ -93,20 +93,21 @@ def professor_detail(professor_id):
 
 @app.route('/professors/add', methods=['GET', 'POST'])
 def add_prof():
-    if request.method == 'POST':
+    form = ProfessorForm(request.form)
+    if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
                 prof = Professor.create(
-                        first_name=request.form['first_name'],
-                        last_name=request.form['last_name'],
-                        gender=request.form['gender']
+                        first_name=form.first_name.data,
+                        last_name=form.last_name.data,
+                        gender=form.gender.data
                 )
             flash('Professor successfully added')
             return redirect(url_for('get_profs'))
         
         except IntegrityError:
             flash('Something went wrong...')
-    return render_template('add_professor.html')
+    return render_template('add_professor.html', form=form)
 
 @app.route('/courses/')
 def get_courses():

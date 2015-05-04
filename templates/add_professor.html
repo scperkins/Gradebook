@@ -1,24 +1,20 @@
 {% extends "layout.html" %}
 
 {% block content %}
+{% from "_formhelpers.html" import render_field %}
 <fieldset>
 <legend>Professor Information</legend>
 	<form class="grid-form" action="{{ url_for('add_prof') }}" method="post">
+		{{ form.hidden_tag() }}
 		<div data-row-span="3">
 			<div data-field-span="1">
-				<label>First Name</label>
-				<input type="text" name="first_name" required>
+				{{ render_field(form.first_name) }}
 			</div>
 			<div data-field-span="1">
-				<label>Last Name</label>
-				<input type="text" name="last_name" required>
+				{{ render_field(form.last_name) }}
 			</div>
 			<div data-field-span="1">
-				<label>Gender</label>
-				<select id="gender" name="gender">
-					<option value="M">Male</option>
-					<option value="F">Female</option>
-				</select>				
+				{{ render_field(form.gender, id="gender")}}			
 			</div>
 		</div>
 		<br>
