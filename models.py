@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+    :filename: models.py
+    :author: Sean Perkins '<github.com/scperkins>'
+    :date: March 2015
+    :modified: 4 May 2015
+"""
 from peewee import * 
 from datetime import date
 
