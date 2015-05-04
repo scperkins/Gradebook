@@ -36,6 +36,7 @@ class Assignment(BaseModel):
 
 class Grade(BaseModel):
     score = DoubleField()
+    comment = CharField()
     student = ForeignKeyField(Student)
     assignment = ForeignKeyField(Assignment)
 

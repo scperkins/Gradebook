@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<fieldset>
+	<legend>Edit Student</legend>
+	<form class="grid-form" action="{{ url_for('edit_student') }}" method="get">
+		<div data-row-span="4">
+			<div data-field-span="1">
+				<label>First Name:</label>
+				<input type="text" name="first_name" value="{{ student.first_name }}" required>
+			</div>
+			<div data-field-span="1">
+				<label>Middle Initial:</label>
+				<input type="text" name="middle_initial" value="{{ student.middle_initial }}">
+			</div>
+			<div data-field-span="2">
+				<label>Last Name:</label>
+				<input type="text" name="last_name" value="{{ student.last_name }}" required>
+			</div>
+		</div>
+		<div data-row-span="3">
+			<div data-field-span="1">
+				<label>Gender</label>
+					<select id="gender" name="gender">
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+					</select>
+			</div>
+			<div data-field-span="1">
+				<label>Graduation Year:</label>
+				<input type="date" name="grad_year" placeholder="mm/dd/yyyy" value="{{ student.grad_year }}" required>
+			</div>
+			<div data-field-span="1">
+				<label>GPA:</label>
+				<input type="number" step="0.01" min="0" max="4" name="gpa" value="{{ student.gpa }}">
+			</div>
+		</div>
+		<br>
+		<input class="button-blue" type="submit" value="Save">
+	</form>
+</fieldset>
+{% endblock %}

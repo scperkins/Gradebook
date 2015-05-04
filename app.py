@@ -32,16 +32,17 @@ def index():
 
 @app.route('/students/add', methods=['GET','POST'])
 def add_students():
-    if request.method == 'POST':
+    form = StudentForm()
+    if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
                 student = Student.create(
-                        first_name=request.form['first_name'],
-                        middle_initial=request.form['middle_initial'],
-                        last_name=request.form['last_name'],
-                        gender=request.form['gender'],
-                        grad_year=request.form['grad_year'],
-                        gpa=request.form['gpa'])
+                        first_name=form.first_name.data,
+                        middle_initial=form.middle_initial.data,
+                        last_name=form.last_name.data,
+                        gender=form.gender.data,
+                        grad_year=form.grad_year.data,
+                        gpa=form.gpa.data)
             flash('Student sucessfully added!')
             return redirect(url_for('get_students'))
         
