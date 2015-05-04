@@ -5,7 +5,7 @@
     :date: 3 May 2015
 """
 from flask_wtf import Form
-from wtforms import StringField, DateField, DecimalField, SelectField,  validators
+from wtforms import StringField, DateField, DecimalField, SelectField, validators
 
 GENDER_CHOICE = [('M', 'Male'),('F', 'Female')]
 
@@ -20,4 +20,4 @@ class StudentForm(Form):
 class ProfessorForm(Form):
     first_name = StringField("First Name", [validators.InputRequired()])
     last_name = StringField("Last Name", [validators.InputRequired()])
-    gender = SelectionField("Gender", choices=GENDER_CHOICE)
+    gender = SelectField("Gender", choices=GENDER_CHOICE)
