@@ -1,5 +1,6 @@
 from flask import Flask, g, request, render_template, flash, redirect, url_for, abort
 from models import *
+from forms import *
 
 SECRET_KEY = 'development key'
 
@@ -32,7 +33,7 @@ def index():
 
 @app.route('/students/add', methods=['GET','POST'])
 def add_students():
-    form = StudentForm()
+    form = StudentForm(request.form)
     if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
@@ -49,7 +50,7 @@ def add_students():
         except IntegrityError:
             flash('Something went wrong...')
     
-    return render_template('add_students.html')
+    return render_template('add_students.html', form=form)
 
 @app.route('/students/')
 def get_students():
@@ -82,6 +83,7 @@ def edit_student(student_id):
         gpa = request.form['gpa']
         
     return redirect(url_for('student_detail'))
+
 @app.route('/professors/')
 def get_profs():
     profs = Professor.select()
