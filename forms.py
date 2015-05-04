@@ -11,6 +11,6 @@ class StudentForm(Form):
     middle_initial = StringField("Middle Initial", [validators.Length(max=1)])
     last_name = StringField("Last Name", [validators.InputRequired()])
     gender = SelectField(u'Gender', choices=[('m', 'Male'),('f', 'Female')])
-    grad_year = DateField("Graduation Year")
+    grad_year = DateField("Graduation Year", format='%Y-%m-%d')
     gpa = DecimalField("GPA", [validators.NumberRange(min=0, max=4.0)])
 
