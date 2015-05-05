@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, g, request, render_template, flash, redirect, url_for, abort
 from models import *
 from forms import *
@@ -117,8 +118,10 @@ def get_courses():
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
     form = CourseForm(request.form)
-    form.professor.choices = [(prof.id,prof.last_name) for prof in Professor.select().order_by(Professor.last_name.asc())]
-
+    form.professor.choices = [(prof.id, prof.last_name)
+            for prof 
+            in Professor.select().order_by(Professor.last_name.asc())]
+    #import pdb;pdb.set_trace()
     if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
@@ -126,7 +129,8 @@ def add_course():
                         name=form.name.data,
                         short_course_id=form.short_course_id.data,
                         credits=form.credits.data,
-                        professor = form.professor.choices)
+                        professor = form.professor.choices
+                )
             flash('Course successfully added')
             return redirect(url_for('get_courses'))
         except IntegrityError:
