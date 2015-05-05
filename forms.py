@@ -26,4 +26,4 @@ class CourseForm(Form):
     name = StringField("Course Name", [validators.InputRequired()])
     short_course_id = StringField("Course ID")
     credits = DecimalField("Credits")
-    professor = SelectField("Professor")
+    professor = SelectField("Professor", coerce=int)

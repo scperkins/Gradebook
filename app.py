@@ -116,21 +116,22 @@ def get_courses():
 
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
-    professors = Professor.select()
-    if request.method == 'POST':
+    form = CourseForm(request.form)
+    form.professor.choices = [(prof.id,prof.last_name) for prof in Professor.select().order_by(Professor.last_name.asc())]
+
+    if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
                 course = Course.create(
-                        name=request.form['name'],
-                        short_course_id=request.form['short_course_id'],
-                        credits=request.form['credits'],
-                        professor=request.form['professor']
-                )
+                        name=form.name.data,
+                        short_course_id=form.short_course_id.data,
+                        credits=form.credits.data,
+                        professor = form.professor.choices)
             flash('Course successfully added')
             return redirect(url_for('get_courses'))
         except IntegrityError:
             flash('Something went wrong...')
-    return render_template('add_course.html', professors=professors)
+    return render_template('add_course.html', form=form)
 
 @app.route('/courses/<course_id>')
 def course_detail(course_id):

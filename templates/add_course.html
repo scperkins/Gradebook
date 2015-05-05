@@ -1,31 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
+{% from "_formhelpers.html" import render_field %}
 <fieldset>
 <legend>Add Course</legend>
 <form class="grid-form" action="{{ url_for('add_course') }}" method="post">
 	<div data-row-span="3">
 		<div data-field-span="1">
-			<label>Course name:</label>
-			<input type="text" name="name" required="true">
+			{{ render_field(form.name) }}
 		</div>
 		<div data-field-span="1">
-			<label>Course ID:</label>
-			<input type="text" name="short_course_id" placeholder="e.g, CS001" required="true">
+			{{ render_field(form.short_course_id, placeholder="e.g, CS001") }}
 		</div>
 		<div data-field-span="1">
-			<label>Credits:</label>
-			<input type="number" name="credits" required="true">
+			{{ render_field(form.credits) }}
 		</div>
 	</div>
 	<div data-row-span="2">
 		<div data-field-span="1">
-			<label>Lecturer</label>
-			<select id="prof.id" name="professor">
-				{% for prof in professors %}
-				<option value="{{ prof.id }}">{{ prof.last_name + ", " + prof.first_name}}</option>
-				{% endfor %}
-			</select>
+			{{ render_field(form.professor) }}
 		</div>
 	</div>
 	<br>
