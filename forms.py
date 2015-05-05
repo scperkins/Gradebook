@@ -21,3 +21,9 @@ class ProfessorForm(Form):
     first_name = StringField("First Name", [validators.InputRequired()])
     last_name = StringField("Last Name", [validators.InputRequired()])
     gender = SelectField("Gender", choices=GENDER_CHOICE)
+
+class CourseForm(Form):
+    name = StringField("Course Name", [validators.InputRequired()])
+    short_course_id = StringField("Course ID")
+    credits = DecimalField("Credits")
+    professor = SelectField("Professor")
