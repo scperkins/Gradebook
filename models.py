@@ -38,6 +38,7 @@ class Assignment(BaseModel):
     name = CharField(null=False)
     description = CharField()
     due_date = DateField()
+    weight = DoubleField()
     max_points = DoubleField()
     course = ForeignKeyField(Course)
 
