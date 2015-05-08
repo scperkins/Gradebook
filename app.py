@@ -32,6 +32,7 @@ def after_request(response):
 def index():
     return render_template('index.html')
 
+"""Students"""
 @app.route('/students/add', methods=['GET','POST'])
 def add_students():
     form = StudentForm(request.form)
@@ -81,6 +82,7 @@ def edit_student(student_id):
         return redirect(url_for('student_detail', student_id=student_id))
     return render_template('edit_student.html', student=student, form=form)
 
+"""Professors"""
 @app.route('/professors/')
 def get_profs():
     profs = Professor.select()
@@ -110,6 +112,14 @@ def add_prof():
             flash('Something went wrong...')
     return render_template('add_professor.html', form=form)
 
+@app.route('/professors/<professor_id>', methods=['GET','POST'])
+def delete_prof(professor_id):
+    professor = Professor.get(Professor.id == professor_id)
+    professor.delete_instance()
+    flash("Professor Deleted")
+    return redirect(url_for('get_profs'))
+
+"""Courses/Assignments"""
 @app.route('/courses/')
 def get_courses():
     courses = Course.select()
