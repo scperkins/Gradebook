@@ -121,17 +121,16 @@ def add_course():
     form.professor.choices = [(prof.id, prof.last_name)
             for prof 
             in Professor.select().order_by(Professor.last_name.asc())]
-    #import pdb;pdb.set_trace()
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST':
         try:
             with database.transaction():
                 course = Course.create(
                         name=form.name.data,
                         short_course_id=form.short_course_id.data,
                         credits=form.credits.data,
-                        professor = form.professor.choices
+                        professor=form.professor.data
                 )
-            flash('Course successfully added')
+            flash('{} successfully added'.format(course.name))
             return redirect(url_for('get_courses'))
         except IntegrityError:
             flash('Something went wrong...')
