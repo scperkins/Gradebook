@@ -1,6 +1,7 @@
 #TODO
 
 * Edit and Delete buttons on all records
+* Animate and style flashed messages
 * Implement grades and put completed and graded statuses on them
 * GPA calculation
 * Reporting (averages, low and high scores, percent graded, etc) and

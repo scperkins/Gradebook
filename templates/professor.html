@@ -18,6 +18,15 @@
 			</div>
 		</fieldset>
 	</div>
+	<div class="span-1">
+		<fieldset class="flakes-information-box">
+			<legend>Actions</legend>
+			<form action="{{ url_for('delete_prof', professor_id=prof.id) }}" method="post">
+				<input class="button-magenta smaller" type="submit" value="Delete"/>
+			</form>
+			<br>
+		</fieldset>		
+	</div>
 </div>
 <br>
 <table class="flakes-table">
