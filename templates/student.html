@@ -38,15 +38,15 @@
 		<div class="span-1">
 			<fieldset class="flakes-information-box">
 				<legend>Actions</legend>
+				</br>
+				<form action="{{ url_for('edit_student', student_id=student.id) }}" method="post">
+					<input class="button-darkblue smaller" type="submit" value="Edit"/>
+				</form>
+				</br>
 				<form action="{{ url_for('delete_student', student_id=student.id) }}" method="post">
 					<input class="button-magenta smaller" type="submit" value="Delete"/>
 				</form>
-				<br>
-				<form action="{{ url_for('edit_student', student_id=student.id) }}" method="post">
-					<input class="button-blue smaller" type="submit" value="Edit"/>
-				</form>
 			</fieldset>
-			
 		</div>
 	</div>
 {% endblock %}

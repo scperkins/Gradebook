@@ -30,7 +30,10 @@
 		<div class="span-1">
 			<fieldset class="flakes-information-box">
 				<legend>Actions</legend>
-				<p><a href="{{ url_for('add_assignment', course_id=course.id) }}">Add Assignment</a></p>
+				</br>
+				<form action="{{ url_for('add_assignment', course_id=course.id) }}" method="post">
+					<input class="button-green smaller" type="submit" value="Add Assignment" />
+				</form>
 			</fieldset>
 		</div>
 	</div>
