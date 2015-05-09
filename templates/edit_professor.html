@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<fieldset>
+<legend>Professor Information</legend>
+	<form class="grid-form" action="{{ url_for('edit_professor', professor_id=professor.id) }}" method="post">
+		{{ form.hidden_tag() }}
+		<div data-row-span="3">
+			<div data-field-span="1">
+				{{ render_field(form.first_name) }}
+			</div>
+			<div data-field-span="1">
+				{{ render_field(form.last_name) }}
+			</div>
+			<div data-field-span="1">
+				{{ render_field(form.gender, id="gender")}}			
+			</div>
+		</div>
+		<br>
+		<input class="button-green" type="submit" value="Save">
+	</form>
+</fieldset>
+{% endblock %}

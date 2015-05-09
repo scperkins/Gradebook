@@ -88,7 +88,7 @@ def get_profs():
     profs = Professor.select()
     return render_template('professors.html', profs=profs)
 
-@app.route('/professors/<professor_id>')
+@app.route('/professors/<int:professor_id>')
 def professor_detail(professor_id):
     professor = get_object_or_404(Professor, Professor.id == professor_id)
     courses_taught = Course.select().where(Course.professor == professor_id)
@@ -112,7 +112,18 @@ def add_prof():
             flash('Something went wrong...')
     return render_template('add_professor.html', form=form)
 
-@app.route('/professors/<professor_id>', methods=['GET','POST'])
+@app.route('/professors/<int:professor_id>', methods=['GET', 'POST'])
+def edit_professor(professor_id):
+    professor = Professor.get(Professor.id == professor_id)
+    form = ProfessorForm(request.form, obj=professor)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(professor)
+        professor.save()
+        flash('Edit on professor {} was successful'.format())
+        return redirect(url_for('professor_detail', professor_id=professor_id))
+    return render_template('edit_professor.html', professor=professor, form=form) 
+
+@app.route('/professors/<int:professor_id>/delete', methods=['GET','POST'])
 def delete_prof(professor_id):
     professor = Professor.get(Professor.id == professor_id)
     professor.delete_instance()
