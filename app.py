@@ -166,21 +166,22 @@ def course_detail(course_id):
 @app.route('/courses/<course_id>/add_assignment', methods=['GET', 'POST'])
 def add_assignment(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
-    if request.method == 'POST':
+    form = AssignmentForm(request.form)
+    if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
                 assignment = Assignment.create(
-                    name=request.form['name'],
-                    description=request.form['desc'],
-                    due_date=request.form['due_date'],
-                    max_points=request.form['max_points'],
+                    name=form.name.data,
+                    description=form.description.data,
+                    due_date=form.due_date.data,
+                    max_points=form.max_points.data,
                     course=course
                 )
             flash('Assignment successfully added to %s' % course.name)
             return redirect(url_for('course_detail', course_id=course.id))
         except IntegrityError:
             flash('Something went wrong...')
-    return render_template('add_assignment.html', course=course)
+    return render_template('add_assignment.html', course=course, form=form)
 
 if __name__ == "__main__":
     create_tables()

@@ -5,7 +5,7 @@
     :date: 3 May 2015
 """
 from flask_wtf import Form
-from wtforms import StringField, DateField, DecimalField, SelectField, validators
+from wtforms import StringField, DateField, DecimalField,SelectField, TextAreaField, IntegerField, validators
 
 GENDER_CHOICE = [('M', 'Male'),('F', 'Female')]
 
@@ -27,3 +27,9 @@ class CourseForm(Form):
     short_course_id = StringField("Course ID")
     credits = DecimalField("Credits")
     professor = SelectField("Professor", coerce=int)
+
+class AssignmentForm(Form):
+    name = StringField("Assignment Name", [validators.InputRequired()])
+    description = TextAreaField("Description")
+    due_date = DateField("Due Date", [validators.InputRequired()])
+    max_points = IntegerField("Maximum Points", [validators.NumberRange(min=1)])
