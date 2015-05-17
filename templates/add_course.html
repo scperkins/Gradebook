@@ -5,6 +5,7 @@
 <fieldset>
 <legend>Add Course</legend>
 <form class="grid-form" action="{{ url_for('add_course') }}" method="post">
+	{{ form.hidden_tag() }}
 	<div data-row-span="3">
 		<div data-field-span="1">
 			{{ render_field(form.name) }}

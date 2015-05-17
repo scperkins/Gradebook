@@ -119,7 +119,7 @@ def edit_professor(professor_id):
     if request.method == 'POST' and form.validate():
         form.populate_obj(professor)
         professor.save()
-        flash('Edit on professor {} was successful'.format())
+        flash('Edit on Professor {} was successful'.format(professor.last_name))
         return redirect(url_for('professor_detail', professor_id=professor_id))
     return render_template('edit_professor.html', professor=professor, form=form) 
 
@@ -157,11 +157,23 @@ def add_course():
             flash('Something went wrong...')
     return render_template('add_course.html', form=form)
 
-@app.route('/courses/<course_id>')
+@app.route('/courses/<int:course_id>')
 def course_detail(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
     assignments = Assignment.select().where(Assignment.course == course_id)
     return render_template('course.html', course=course, assignments=assignments)
+
+@app.route('/courses/<int:course_id>/', methods=['GET','POST'])
+def edit_course(course_id):
+    course = Course.get(Course.id == course_id)
+    form = CourseForm(request.form, obj=course)
+    form.professor.data = course.professor.id
+    if request.method == 'POST':
+        form.populate_obj(course)
+        course.save()
+        flash('Changes to {} were saved.'.format(course.name))
+        return redirect(url_for('course_detail', course_id=course.id))
+    return render_template('edit_course.html', form=form, course=course)
 
 @app.route('/courses/<course_id>/add_assignment', methods=['GET', 'POST'])
 def add_assignment(course_id):

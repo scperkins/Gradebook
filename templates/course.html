@@ -30,11 +30,11 @@
 		<div class="span-1">
 			<fieldset class="flakes-information-box">
 				<legend>Actions</legend>
-				</br>
+				<br/>
 				<form action="{{ url_for('edit_course', course_id=course.id) }}" method="post">
 					<input class="button-darkblue smaller" type="submit" value="Edit Course" />
 				</form>
-				</br>
+				<br/>
 				<form action="{{ url_for('add_assignment', course_id=course.id) }}" method="post">
 					<input class="button-green smaller" type="submit" value="Add Assignment" />
 				</form>
@@ -50,7 +50,11 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<td><input type="checkbox"></td>
+				<td>
+					<label>
+					<input type="checkbox">
+					</label>
+				</td>
 				<th>Assignment</th>
 				<th>Due Date</th>
 				<th>Max Points</th>
@@ -60,7 +64,11 @@
 		<tbody>
 		{% for assignment in assignments %}
 		<tr>
-			<td><input type="checkbox"></td>
+			<td>
+				<label>
+					<input type="checkbox">
+				</label>
+			</td>
 			<td>{{ assignment.name }}</td>
 			<td>{{ assignment.due_date }}</td>
 			<td>{{ assignment.max_points }}</td>
