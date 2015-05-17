@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<fieldset>
+<legend>Edit Course</legend>
+<form class="grid-form" action="{{ url_for('edit_course', course_id=course.id) }}" method="post">
+	{{ form.hidden_tag() }}
+	<div data-row-span="3">
+		<div data-field-span="1">
+			{{ render_field(form.name) }}
+		</div>
+		<div data-field-span="1">
+			{{ render_field(form.short_course_id, placeholder="e.g, CS001") }}
+		</div>
+		<div data-field-span="1">
+			{{ render_field(form.credits, step="0.01") }}
+		</div>
+	</div>
+	<div data-row-span="2">
+		<div data-field-span="1">
+			{{ render_field(form.professor) }}
+		</div>
+	</div>
+	<br>
+	<input class="button-blue" type="submit" value="Save">
+</form>
+</fieldset>
+{% endblock %}
