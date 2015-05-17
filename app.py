@@ -167,7 +167,9 @@ def course_detail(course_id):
 def edit_course(course_id):
     course = Course.get(Course.id == course_id)
     form = CourseForm(request.form, obj=course)
-    form.professor.data = course.professor.id
+    form.professor.choices = [(prof.id, prof.last_name)
+            for prof
+            in Professor.select().order_by(Professor.last_name.asc())]
     if request.method == 'POST':
         form.populate_obj(course)
         course.save()

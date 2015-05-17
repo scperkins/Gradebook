@@ -5,7 +5,7 @@
     :date: 3 May 2015
 """
 from flask_wtf import Form
-from wtforms import StringField, DateField, DecimalField,SelectField, TextAreaField, IntegerField, validators
+from wtforms import StringField, DateField, DecimalField, SelectField, TextAreaField, IntegerField, validators
 
 GENDER_CHOICE = [('M', 'Male'),('F', 'Female')]
 
