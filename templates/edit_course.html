@@ -19,7 +19,11 @@
 	</div>
 	<div data-row-span="2">
 		<div data-field-span="1">
-			{{ render_field(form.professor, id="professor") }}
+			{% if form.professor %}
+			    {{ render_field(form.professor, id="professor") }}
+            {% else %}
+                <p><a href="add_professor.html">Add Professor </a>Test</p>
+            {% endif %}
 		</div>
 	</div>
 	<br>

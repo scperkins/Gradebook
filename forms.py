@@ -6,6 +6,7 @@
 """
 from flask_wtf import Form
 from wtforms import StringField, DateField, DecimalField, SelectField, TextAreaField, IntegerField, validators
+from wtforms_components import TimeField
 
 GENDER_CHOICE = [('M', 'Male'),('F', 'Female')]
 
@@ -18,9 +19,11 @@ class StudentForm(Form):
     gpa = DecimalField("GPA", [validators.NumberRange(min=0, max=4.0)])
 
 class ProfessorForm(Form):
-    first_name = StringField("First Name", [validators.InputRequired()])
-    last_name = StringField("Last Name", [validators.InputRequired()])
+    name = StringField("Name", [validators.InputRequired()])
     gender = SelectField("Gender", choices=GENDER_CHOICE)
+    office = StringField("Office")
+    hours_start = TimeField("Office Hours Start")
+    hours_end = TimeField("Office Hours End")
 
 class CourseForm(Form):
     name = StringField("Course Name", [validators.InputRequired()])

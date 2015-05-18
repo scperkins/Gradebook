@@ -39,14 +39,14 @@ def add_students():
     if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
-                student = Student.create(
-                        first_name=form.first_name.data,
-                        middle_initial=form.middle_initial.data,
-                        last_name=form.last_name.data,
-                        gender=form.gender.data,
-                        grad_year=form.grad_year.data,
-                        gpa=form.gpa.data)
-            flash('Student sucessfully added!')
+                Student.create(
+                    first_name=form.first_name.data,
+                    middle_initial=form.middle_initial.data,
+                    last_name=form.last_name.data,
+                    gender=form.gender.data,
+                    grad_year=form.grad_year.data,
+                    gpa=form.gpa.data)
+            flash('Student successfully added!')
             return redirect(url_for('get_students'))
         
         except IntegrityError:
@@ -100,10 +100,12 @@ def add_prof():
     if request.method == 'POST' and form.validate():
         try:
             with database.transaction():
-                prof = Professor.create(
-                        first_name=form.first_name.data,
-                        last_name=form.last_name.data,
-                        gender=form.gender.data
+                Professor.create(
+                    name=form.name.data,
+                    gender=form.gender.data,
+                    office=form.office.data,
+                    hours_start=form.hours_start,
+                    hours_end=form.hours_end
                 )
             flash('Professor successfully added')
             return redirect(url_for('get_profs'))
@@ -141,7 +143,7 @@ def add_course():
     form = CourseForm(request.form)
     form.professor.choices = [(prof.id, prof.last_name)
             for prof 
-            in Professor.select().order_by(Professor.last_name.asc())]
+            in Professor.select().order_by(Professor.name.asc())]
     if request.method == 'POST':
         try:
             with database.transaction():
@@ -169,7 +171,7 @@ def edit_course(course_id):
     form = CourseForm(request.form, obj=course)
     form.professor.choices = [(prof.id, prof.last_name)
             for prof
-            in Professor.select().order_by(Professor.last_name.asc())]
+            in Professor.select().order_by(Professor.name.asc())]
     if request.method == 'POST':
         form.populate_obj(course)
         course.save()

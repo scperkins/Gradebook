@@ -9,16 +9,18 @@
 	<thead>
 		<tr>
 			<td><input type="checkbox"></td>
-			<th>Last Name</th>
-			<th>First Name</th>
+			<th>Name</th>
+			<th>Office Location</th>
+			<th>Office Hours</th>
 		</tr>
 	</thead>
 		<tbody>
 		{% for prof in profs %}
 		<tr>
 			<td><input type="checkbox"></td>
-			<td><a href="{{ url_for('professor_detail', professor_id=prof.id) }}">{{prof.last_name }}</a></td>
-			<td>{{ prof.first_name }}</td>
+			<td><a href="{{ url_for('professor_detail', professor_id=prof.id) }}">{{prof.name }}</a></td>
+			<td>{{ prof.office }}</td>
+			<td>{{ prof.hours_start, prof.hours_end }}</td>
 		</tr>
 		{% endfor %}
 	</tbody>

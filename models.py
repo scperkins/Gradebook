@@ -24,9 +24,11 @@ class Student(BaseModel):
     gpa = DoubleField()
 
 class Professor(BaseModel):
-    first_name = CharField(null=False)
-    last_name = CharField(null=False)
+    name = CharField(null=False)
     gender = CharField(max_length=1)
+    office = CharField()
+    hours_start = TimeField()
+    hours_end = TimeField()
 
 class Course(BaseModel):
     name = CharField()
