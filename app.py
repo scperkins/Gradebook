@@ -104,8 +104,8 @@ def add_prof():
                     name=form.name.data,
                     gender=form.gender.data,
                     office=form.office.data,
-                    hours_start=form.hours_start,
-                    hours_end=form.hours_end
+                    hours_start=form.hours_start.data,
+                    hours_end=form.hours_end.data
                 )
             flash('Professor successfully added')
             return redirect(url_for('get_profs'))
