@@ -8,13 +8,19 @@
 		{{ form.hidden_tag() }}
 		<div data-row-span="3">
 			<div data-field-span="1">
-				{{ render_field(form.first_name) }}
+				{{ render_field(form.name) }}
 			</div>
 			<div data-field-span="1">
-				{{ render_field(form.last_name) }}
+				{{ render_field(form.gender, id="gender")}}
 			</div>
 			<div data-field-span="1">
-				{{ render_field(form.gender, id="gender")}}			
+				{{ render_field(form.office) }}
+			</div>
+			<div data-field-span="1">
+				{{ render_field(form.hours_start) }}
+			</div>
+			<div data-field-span="1">
+				{{ render_field(form.hours_end) }}
 			</div>
 		</div>
 		<br>

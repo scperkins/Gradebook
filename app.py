@@ -121,7 +121,7 @@ def edit_professor(professor_id):
     if request.method == 'POST' and form.validate():
         form.populate_obj(professor)
         professor.save()
-        flash('Edit on Professor {} was successful'.format(professor.last_name))
+        flash('Edit on Professor {} was successful'.format(professor.name))
         return redirect(url_for('professor_detail', professor_id=professor_id))
     return render_template('edit_professor.html', professor=professor, form=form) 
 
