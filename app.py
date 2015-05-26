@@ -141,7 +141,7 @@ def get_courses():
 @app.route('/courses/add', methods=['GET', 'POST'])
 def add_course():
     form = CourseForm(request.form)
-    form.professor.choices = [(prof.id, prof.last_name)
+    form.professor.choices = [(prof.id, prof.name)
             for prof 
             in Professor.select().order_by(Professor.name.asc())]
     if request.method == 'POST':

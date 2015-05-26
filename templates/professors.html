@@ -20,7 +20,7 @@
 			<td><input type="checkbox"></td>
 			<td><a href="{{ url_for('professor_detail', professor_id=prof.id) }}">{{prof.name }}</a></td>
 			<td>{{ prof.office }}</td>
-			<td>{{ prof.hours_start, prof.hours_end }}</td>
+			<td>{{ prof.hours_start}} - {{prof.hours_end }}</td>
 		</tr>
 		{% endfor %}
 	</tbody>
