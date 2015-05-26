@@ -182,11 +182,11 @@ def edit_course(course_id):
 @app.route('/courses/<course_id>/add_assignment', methods=['GET', 'POST'])
 def add_assignment(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
-    form = AssignmentForm(request.form)
-    if request.method == 'POST' and form.validate():
+    form = AssignmentForm(request.form, obj=course)
+    if request.method == 'POST':
         try:
             with database.transaction():
-                assignment = Assignment.create(
+                Assignment.create(
                     name=form.name.data,
                     description=form.description.data,
                     due_date=form.due_date.data,
