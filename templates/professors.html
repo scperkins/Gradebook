@@ -1,6 +1,9 @@
 {% extends "layout.html"%}
 
 {% block content %}
+<div class="flakes-actions-bar">
+	<a class="action button-gray smaller right" href="{{ url_for('add_prof') }}"> Add Professor</a>
+</div>
 <table class="flakes-table">
 	<colgroup>
 		<col span="1" style="width:20px">
@@ -25,5 +28,4 @@
 		{% endfor %}
 	</tbody>
 </table>
-<p><a class="button-green" href="{{ url_for('add_prof') }}">Add Professor</a></p>
 {% endblock %}
