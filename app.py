@@ -165,7 +165,7 @@ def course_detail(course_id):
     assignments = Assignment.select().where(Assignment.course == course_id)
     return render_template('course.html', course=course, assignments=assignments)
 
-@app.route('/courses/<int:course_id>/', methods=['GET','POST'])
+@app.route('/courses/<int:course_id>/', methods=['GET', 'POST'])
 def edit_course(course_id):
     course = Course.get(Course.id == course_id)
     form = CourseForm(request.form, obj=course)
@@ -179,7 +179,7 @@ def edit_course(course_id):
         return redirect(url_for('course_detail', course_id=course.id))
     return render_template('edit_course.html', form=form, course=course)
 
-@app.route('/courses/<course_id>/add_assignment', methods=['GET', 'POST'])
+@app.route('/courses/<int:course_id>/add_assignment', methods=['GET', 'POST'])
 def add_assignment(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
     form = AssignmentForm(request.form, obj=course)
@@ -193,7 +193,7 @@ def add_assignment(course_id):
                     max_points=form.max_points.data,
                     course=course
                 )
-            flash('Assignment successfully added to %s' % course.name)
+            flash('Assignment successfully added to {}'.format(course.name))
             return redirect(url_for('course_detail', course_id=course.id))
         except IntegrityError:
             flash('Something went wrong...')
