@@ -62,19 +62,19 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for assignment in assignments %}
-		<tr>
-			<td>
-				<label>
-					<input type="checkbox">
-				</label>
-			</td>
-			<td>{{ assignment.name }}</td>
-			<td>{{ assignment.due_date }}</td>
-			<td>{{ assignment.max_points }}</td>
-			<td>{{ assignment.description }}</td>
-		</tr>
-		{% endfor %}
+            {% for assignment in assignments %}
+            <tr>
+                <td>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                </td>
+                <td><a href="{{ url_for('assignment', assign_id=assignment.id) }}">{{ assignment.name }}</a></td>
+                <td>{{ assignment.due_date }}</td>
+                <td>{{ assignment.max_points }}</td>
+                <td>{{ assignment.description }}</td>
+            </tr>
+            {% endfor %}
 		</tbody>
 	</table>
 	{% endif %}

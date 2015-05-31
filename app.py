@@ -148,10 +148,10 @@ def add_course():
         try:
             with database.transaction():
                 course = Course.create(
-                        name=form.name.data,
-                        short_course_id=form.short_course_id.data,
-                        credits=form.credits.data,
-                        professor=form.professor.data
+                    name=form.name.data,
+                    short_course_id=form.short_course_id.data,
+                    credits=form.credits.data,
+                    professor=form.professor.data
                 )
             flash('{} successfully added'.format(course.name))
             return redirect(url_for('get_courses'))
@@ -198,6 +198,11 @@ def add_assignment(course_id):
         except IntegrityError:
             flash('Something went wrong...')
     return render_template('add_assignment.html', course=course, form=form)
+
+@app.route('/assignment/<int:assign_id>', methods=['GET'])
+def assignment(assign_id):
+    assignment = get_object_or_404(Assignment, Assignment.id == assign_id)
+    return render_template('assignment.html', assignment=assignment)
 
 if __name__ == "__main__":
     create_tables()
