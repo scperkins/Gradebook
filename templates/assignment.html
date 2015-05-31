@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="grid-4 gutter-20">
+		<div class="span-3">
+			<fieldset class="flakes-information-box">
+				<legend>Assignment Information</legend>
+					<div class="grid-4">
+						<dl class="span-3">
+							<dt>Name</dt>
+							<dd>{{assignment.name}}</dd>
+						</dl>
+					</div>
+					<div class="grid-3">
+						<dl class="span-1">
+							<dt>Due Date</dt>
+							<dd>{{ assignment.due_date }}</dd>
+						</dl>
+						<dl class="span-1">
+							<dt>Maximum Points</dt>
+							<dd>{{ assignment.max_points }}</dd>
+						</dl>
+						<dl>
+							<dt>Description</dt>
+							<dd>{{ assignment.description }}</dd>
+						</dl>
+					</div>
+			</fieldset>
+		</div>
+    </div>
+{% endblock %}
