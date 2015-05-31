@@ -204,6 +204,8 @@ def assignment(assign_id):
     assignment = get_object_or_404(Assignment, Assignment.id == assign_id)
     return render_template('assignment.html', assignment=assignment)
 
+# @app.route('/assignment')
+
 if __name__ == "__main__":
     create_tables()
     app.run(debug=True)
