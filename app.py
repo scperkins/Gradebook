@@ -208,11 +208,12 @@ def assignment(assign_id):
 def edit_assignment(assign_id):
     assignment = Assignment.get(Assignment.id == assign_id)
     form = AssignmentForm(request.form, obj=assignment)
+    import pdb;pdb.set_trace()
     if request.method == 'POST':
         form.populate_obj(assignment)
         assignment.save()
         flash("Changes were saved to assignment: {}".format(assignment.name))
-        return redirect(url_for('assignment', assign_id=assign_id))
+        return redirect(url_for('assignment', assign_id=assignment.id))
     return render_template('edit_assignment.html', form=form, assignment=assignment)
 
 if __name__ == "__main__":
