@@ -204,7 +204,16 @@ def assignment(assign_id):
     assignment = get_object_or_404(Assignment, Assignment.id == assign_id)
     return render_template('assignment.html', assignment=assignment)
 
-# @app.route('/assignment')
+@app.route('/assignment/<int:assign_id>', methods=['GET', 'POST'])
+def edit_assignment(assign_id):
+    assignment = Assignment.get(Assignment.id == assign_id)
+    form = AssignmentForm(request.form, obj=assignment)
+    if request.method == 'POST':
+        form.populate_obj(assignment)
+        assignment.save()
+        flash("Changes were saved to assignment: {}".format(assignment.name))
+        return redirect(url_for('assignment', assign_id=assign_id))
+    return render_template('edit_assignment.html', form=form, assignment=assignment)
 
 if __name__ == "__main__":
     create_tables()

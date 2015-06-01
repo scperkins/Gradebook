@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% from "_formhelpers.html" import render_field %}
+<fieldset>
+<legend>Add Assignment</legend>
+	<form class="grid-form" action="{{ url_for('add_assignment', course_id=course.id) }}" method="post">
+		<div data-row-span="3">
+			<div data-field-span="1">
+				{{ render_field(form.name) }}
+			</div>
+			<div data-field-span="1">
+				{{ render_field(form.due_date, type="date") }}
+			</div>
+			<div data-field-span="1">
+				{{ render_field(form.max_points, step="1") }}
+			</div>
+		</div>
+		<div data-row-span="3">
+			<div data-field-span="3">
+				{{ render_field(form.description) }}
+			</div>
+		</div>
+		<br>
+		<input class="button-blue" type="submit" value="Save">
+</form>
+{% endblock %}
