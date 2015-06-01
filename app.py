@@ -199,12 +199,12 @@ def add_assignment(course_id):
             flash('Something went wrong...')
     return render_template('add_assignment.html', course=course, form=form)
 
-@app.route('/assignment/<int:assign_id>', methods=['GET'])
+@app.route('/assignment/<int:assign_id>', methods=['GET', 'POST'])
 def assignment(assign_id):
     assignment = get_object_or_404(Assignment, Assignment.id == assign_id)
     return render_template('assignment.html', assignment=assignment)
 
-@app.route('/assignment/<int:assign_id>', methods=['GET', 'POST'])
+@app.route('/assignment/<int:assign_id>/', methods=['GET', 'POST'])
 def edit_assignment(assign_id):
     assignment = Assignment.get(Assignment.id == assign_id)
     form = AssignmentForm(request.form, obj=assignment)

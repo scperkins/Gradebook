@@ -4,7 +4,7 @@
     {% from "_formhelpers.html" import render_field %}
 <fieldset>
 <legend>Add Assignment</legend>
-	<form class="grid-form" action="{{ url_for('add_assignment', course_id=course.id) }}" method="post">
+	<form class="grid-form" action="{{ url_for('edit_assignment', assign_id=assignment.id) }}" method="post">
 		<div data-row-span="3">
 			<div data-field-span="1">
 				{{ render_field(form.name) }}
