@@ -208,7 +208,6 @@ def assignment(assign_id):
 def edit_assignment(assign_id):
     assignment = Assignment.get(Assignment.id == assign_id)
     form = AssignmentForm(request.form, obj=assignment)
-    import pdb;pdb.set_trace()
     if request.method == 'POST':
         form.populate_obj(assignment)
         assignment.save()
