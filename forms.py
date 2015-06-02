@@ -40,4 +40,4 @@ class AssignmentForm(Form):
     name = StringField("Assignment Name", [validators.InputRequired()])
     description = TextAreaField("Description")
     due_date = DateField("Due Date", [validators.InputRequired()])
-    max_points = IntegerField("Maximum Points", [validators.NumberRange(min=1)])
+    max_points = DecimalField("Maximum Points", [validators.NumberRange(min=1)])

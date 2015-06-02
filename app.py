@@ -213,7 +213,7 @@ def edit_assignment(assign_id):
         form.populate_obj(assignment)
         assignment.save()
         flash("Changes were saved to assignment: {}".format(assignment.name))
-        return redirect(url_for('assignment', assign_id=assignment.id))
+        return redirect(url_for('assignment', assign_id=assign_id))
     return render_template('edit_assignment.html', form=form, assignment=assignment)
 
 if __name__ == "__main__":
