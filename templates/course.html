@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<div class="grid-4 gutter-20">
+    <div class="grid-4 gutter-20" xmlns="http://www.w3.org/1999/html">
 		<div class="span-3">
 			<fieldset class="flakes-information-box">
 				<legend>Course Information</legend>
@@ -35,6 +35,10 @@
 					<input class="button-darkblue smaller" type="submit" value="Edit Course" />
 				</form>
 				<br/>
+                <form action="{{ url_for('delete_course', course_id=course.id) }}" method="post">
+                    <input  class="button-magenta smaller" type="submit" value="Delete Course"/>
+                </form>
+                </br>
 				<form action="{{ url_for('add_assignment', course_id=course.id) }}" method="post">
 					<input class="button-green smaller" type="submit" value="Add Assignment" />
 				</form>

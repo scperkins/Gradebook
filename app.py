@@ -179,6 +179,13 @@ def edit_course(course_id):
         return redirect(url_for('course_detail', course_id=course.id))
     return render_template('edit_course.html', form=form, course=course)
 
+@app.route('/course/<int:course_id>', methods=['POST'])
+def delete_course(course_id):
+    course = Course.get(Course.id == course_id)
+    course.delete_instance()
+    flash("Course and related assignments deleted.")
+    return redirect(url_for('get_courses'))
+
 @app.route('/courses/<int:course_id>/add_assignment', methods=['GET', 'POST'])
 def add_assignment(course_id):
     course = get_object_or_404(Course, Course.id == course_id)
@@ -214,6 +221,14 @@ def edit_assignment(assign_id):
         flash("Changes were saved to assignment: {}".format(assignment.name))
         return redirect(url_for('assignment', assign_id=assign_id))
     return render_template('edit_assignment.html', form=form, assignment=assignment)
+
+@app.route('/assignment/<int:assign_id>/delete', methods=['POST'])
+def delete_assignment(assign_id):
+    assign = Assignment.get(Assignment.id == assign_id)
+    course_id = assign.course.id
+    assign.delete_instance()
+    flash("Assignment deleted")
+    return redirect(url_for('course_detail', course_id=course_id))
 
 if __name__ == "__main__":
     create_tables()
