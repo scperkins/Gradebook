@@ -1,8 +1,8 @@
 #TODO
 
-* Edit and Delete buttons on all records
-* Assignment view
-* Animate and style flashed messages
+* Edit and Delete buttons on all records: ~~Student~~, ~~Professor~~, ~~Course~~, ~~Assignment~~, Grade
+* ~~Assignment view~~
+* Animate and ~~style~~ flashed messages
 * Implement grades and put completed and graded statuses on them
 * GPA calculation
 * Reporting (averages, low and high scores, percent graded, etc) and
