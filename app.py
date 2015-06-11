@@ -46,11 +46,11 @@ def add_students():
                     gender=form.gender.data,
                     grad_year=form.grad_year.data,
                     gpa=form.gpa.data)
-            flash('Student successfully added!')
+            flash('Student successfully added!', category="message")
             return redirect(url_for('get_students'))
         
         except IntegrityError:
-            flash('Something went wrong...')
+            flash('Something went wrong...', category="error")
     
     return render_template('add_students.html', form=form)
 
@@ -78,7 +78,7 @@ def edit_student(student_id):
     if request.method == 'POST' and form.validate():
         form.populate_obj(student)
         student.save()
-        flash("Edit successful")
+        flash("Edit successful", category="message")
         return redirect(url_for('student_detail', student_id=student_id))
     return render_template('edit_student.html', student=student, form=form)
 
@@ -107,11 +107,11 @@ def add_prof():
                     hours_start=form.hours_start.data,
                     hours_end=form.hours_end.data
                 )
-            flash('Professor successfully added')
+            flash('Professor successfully added', category="message")
             return redirect(url_for('get_profs'))
         
         except IntegrityError:
-            flash('Something went wrong...')
+            flash('Something went wrong...', category="error")
     return render_template('add_professor.html', form=form)
 
 @app.route('/professors/<int:professor_id>', methods=['GET', 'POST'])
@@ -121,11 +121,11 @@ def edit_professor(professor_id):
     if request.method == 'POST' and form.validate():
         form.populate_obj(professor)
         professor.save()
-        flash('Edit on Professor {} was successful'.format(professor.name))
+        flash('Edit on Professor {} was successful'.format(professor.name), category="message")
         return redirect(url_for('professor_detail', professor_id=professor_id))
     return render_template('edit_professor.html', professor=professor, form=form) 
 
-@app.route('/professors/<int:professor_id>/delete', methods=['GET','POST'])
+@app.route('/professors/<int:professor_id>/delete', methods=['GET', 'POST'])
 def delete_prof(professor_id):
     professor = Professor.get(Professor.id == professor_id)
     professor.delete_instance()
@@ -153,10 +153,10 @@ def add_course():
                     credits=form.credits.data,
                     professor=form.professor.data
                 )
-            flash('{} successfully added'.format(course.name))
+            flash('{} successfully added'.format(course.name), category="message")
             return redirect(url_for('get_courses'))
         except IntegrityError:
-            flash('Something went wrong...')
+            flash('Something went wrong...', category="error")
     return render_template('add_course.html', form=form)
 
 @app.route('/courses/<int:course_id>')
@@ -175,7 +175,7 @@ def edit_course(course_id):
     if request.method == 'POST':
         form.populate_obj(course)
         course.save()
-        flash('Changes to {} were saved.'.format(course.name))
+        flash('Changes to {} were saved.'.format(course.name), category="message")
         return redirect(url_for('course_detail', course_id=course.id))
     return render_template('edit_course.html', form=form, course=course)
 
@@ -200,10 +200,10 @@ def add_assignment(course_id):
                     max_points=form.max_points.data,
                     course=course
                 )
-            flash('Assignment successfully added to {}'.format(course.name))
+            flash('Assignment successfully added to {}'.format(course.name), category="message")
             return redirect(url_for('course_detail', course_id=course.id))
         except IntegrityError:
-            flash('Something went wrong...')
+            flash('Something went wrong...', category="error")
     return render_template('add_assignment.html', course=course, form=form)
 
 @app.route('/assignment/<int:assign_id>', methods=['GET', 'POST'])
@@ -218,7 +218,7 @@ def edit_assignment(assign_id):
     if request.method == 'POST':
         form.populate_obj(assignment)
         assignment.save()
-        flash("Changes were saved to assignment: {}".format(assignment.name))
+        flash("Changes were saved to assignment: {}".format(assignment.name), category="message")
         return redirect(url_for('assignment', assign_id=assign_id))
     return render_template('edit_assignment.html', form=form, assignment=assignment)
 

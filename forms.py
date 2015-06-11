@@ -41,3 +41,9 @@ class AssignmentForm(Form):
     description = TextAreaField("Description")
     due_date = DateField("Due Date", [validators.InputRequired()])
     max_points = DecimalField("Maximum Points", [validators.NumberRange(min=1)])
+"""
+class GradeForm(Form):
+    score = DecimalField("Score", [validators.InputRequired()])
+    comment = TextAreaField("Comment")
+    student =
+"""

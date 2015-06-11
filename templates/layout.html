@@ -22,9 +22,15 @@
 				{% endblock %}
 
 				<div>
-					{% for message in get_flashed_messages() %}
-						<div class="flakes-message information">{{ message }}</div>
-					{% endfor %}
+					{% with messages = get_flashed_messages(with_categories=true) %}
+						{% for category, message in messages %}
+							{% if category == "message" %}
+								<div class="flakes-message success">{{ message }}</div>
+							{% elif category == "error" %}
+								<div class="flakes-message error">{{ message }}</div>
+							{% endif %}
+						{% endfor %}
+					{% endwith %}
 				</div>
 			</div>
 		</div>
