@@ -197,6 +197,7 @@ def add_assignment(course_id):
                     name=form.name.data,
                     description=form.description.data,
                     due_date=form.due_date.data,
+                    weight=form.weight.data,
                     max_points=form.max_points.data,
                     course=course
                 )
@@ -229,6 +230,26 @@ def delete_assignment(assign_id):
     assign.delete_instance()
     flash("Assignment deleted")
     return redirect(url_for('course_detail', course_id=course_id))
+
+"""Grades"""
+@app.route('/assignment/<int:assign_id>/add_grade', methods=['GET', 'POST'])
+def add_grade(assign_id):
+    assignment = get_object_or_404(Assignment, Assignment.id == assign_id)
+    form = GradeForm(request.form, obj=assignment)
+    if request.method == 'POST':
+        try:
+            with database.transaction():
+                Grade.create(
+                    score=form.score.data,
+                    comment=form.comment.data,
+                    student=form.student.data,
+                    assignment=assignment
+                )
+                flash("Grade successfully added to {}".format(assignment.name), category="message")
+                return redirect(url_for('assignment', assign_id=assignment.id))
+        except IntegrityError:
+            flash("Something went wrong...", category="error")
+    return render_template('add_grade.html', assign_id=assign_id, form=form)
 
 if __name__ == "__main__":
     create_tables()
