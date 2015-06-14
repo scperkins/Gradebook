@@ -51,9 +51,9 @@ class Grade(BaseModel):
     assignment = ForeignKeyField(Assignment)
 
 class StudentCourse(BaseModel):
-    '''
+    """
     Specifies relationship between Student and Course
-    '''
+    """
     student = ForeignKeyField(Student)
     course = ForeignKeyField(Course)
 

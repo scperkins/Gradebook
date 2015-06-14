@@ -8,9 +8,7 @@ from flask_wtf import Form
 from wtforms import StringField, DateField, DecimalField, SelectField, TextAreaField, IntegerField, validators
 from wtforms_components import TimeField
 
-# No, tumblr feminists, mayonnaise is not a gender.
 GENDER_CHOICE = [('M', 'Male'), ('F', 'Female')]
-# Horseradish isn't a gender either.
 
 class StudentForm(Form):
     first_name = StringField("First Name", [validators.InputRequired()])
@@ -39,6 +37,7 @@ class CourseForm(Form):
 class AssignmentForm(Form):
     name = StringField("Assignment Name", [validators.InputRequired()])
     description = TextAreaField("Description")
+    weight = DecimalField("Assignment Weight")
     due_date = DateField("Due Date", [validators.InputRequired()])
     max_points = DecimalField("Maximum Points", [validators.NumberRange(min=1)])
 
