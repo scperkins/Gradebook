@@ -21,7 +21,7 @@
 				{% block content %}
 				{% endblock %}
 
-				<div>
+				<div class="flash">
 					{% with messages = get_flashed_messages(with_categories=true) %}
 						{% for category, message in messages %}
 							{% if category == "message" %}
@@ -36,4 +36,6 @@
 		</div>
 	</div> <!-- flakes-frame -->
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type=text/javascript src="{{ url_for('static', filename='js/script.js') }}"></script>
 </html>
